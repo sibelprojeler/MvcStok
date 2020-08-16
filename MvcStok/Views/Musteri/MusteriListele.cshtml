@@ -1,0 +1,36 @@
+﻿@using MvcStok.Models.Entity;
+@model List<TBL_MUSTERI>
+@{
+    ViewBag.Title = "MusteriListele";
+    Layout = "~/Views/Shared/_Main_Layout.cshtml";
+}
+@using (Html.BeginForm("MusteriListele", "Musteri", FormMethod.Get))
+{ <p>
+   <b>Aranacak Müşteri Adı:</b> @Html.TextBox("p")
+    <input type="submit" value="Ara" />
+     </p>}
+<table class="table table-bordered">
+    <tr>
+        <th>MUSTERİ ID</th>
+        <th>MUSTERI ADI</th>
+        <th>MUSTERI SOYADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+        <th>ALERT</th>
+
+    </tr>
+    <tbody>
+       @foreach (var mus in Model)
+       { <tr>
+           <th>@mus.MUSTERIID</th>
+            <td>@mus.MUSTERİAD</td>
+            <td>@mus.MUSTERİSOYAD</td>
+            <td>@Html.ActionLink("SİL", "SİL", new { id = mus.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+             <td><a href="/Musteri/MusteriGetir/@mus.MUSTERIID" class="btn btn-success">GÜNCELLE</a></td>
+            <td>@Html.ActionLink("SİL", "SİL", new { id = mus.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+        </tr>}
+    </tbody>
+    
+
+</table>
+<a href="/Musteri/YeniMusteri/" class="btn btn-primary" >YENİ MÜŞTERİ EKLE</a>
